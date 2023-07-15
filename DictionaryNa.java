@@ -1,10 +1,8 @@
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class DictionaryNa {
+public class java {
     private static HashMap<String, String> lib;
     private static ArrayList<String> rsString;
 
@@ -15,17 +13,20 @@ public class DictionaryNa {
 
         try (Scanner sc = new Scanner(System.in)) {
             String req = sc.nextLine();
-            for (int i = 0; i < req.length(); i++) {
-                if (i >= req.length() - 1) {
-                }  else {
-
-                    int rsInt = findRsDouble(req.charAt(i) + "" + req.charAt(i + 1));
-                    count += rsInt;
-                    i += rsInt;
+            if (req.length() == 1) {
+                count = findRsDouble(req + ".");
+            } else {
+                for (int i = 0; i < req.length(); i++) {
+                    if (i >= req.length() - 1) {
+                    } else {
+                        int rsInt = findRsDouble(req.charAt(i) + "" + req.charAt(i + 1));
+                        count += rsInt;
+                        i += rsInt;
+                    }
                 }
             }
+            System.out.println(count + " " + rsString);
         }
-        System.out.println(count + " " + rsString);
     }
 
     private static void createLib() {
@@ -40,7 +41,6 @@ public class DictionaryNa {
     }
 
     private static int findRsDouble(String req) {
-
         if (lib.get(req) != null) {
             rsString.add(req);
             return 1;
@@ -60,5 +60,4 @@ public class DictionaryNa {
         }
         return resInt;
     }
-    
 }
